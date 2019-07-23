@@ -25,25 +25,36 @@
 					<th>PROMEDIO</th>
 					</tr>';
 
-	for ($i=0; $i < 13; $i++) { 
+	for ($i=1; $i < 10; $i++) { 
 		$sql="SELECT AVG(value) FROM data WHERE type = 1 AND date like '%2019-0".$i."-%' ";
 
 		$consulta= mysqli_query($con,$sql);
-
-
-	
-
-			
-					
-			
+		
 		while ($row = $consulta -> fetch_assoc() ) {
 
 			echo '
 						<tr>
-						<td>ENERO</td>
-						<td>'.$row['AVG(value)'].'</td>
+						<td>'.$i.'</td>
+						<td>'.round($row['AVG(value)'],2).'%</td>
 						</tr>';
+		}
+
 	}
+
+	for ($i=10; $i < 13; $i++) { 
+		$sql="SELECT AVG(value) FROM data WHERE type = 1 AND date like '%2019-".$i."-%' ";
+
+		$consulta= mysqli_query($con,$sql);
+		
+		while ($row = $consulta -> fetch_assoc() ) {
+
+			echo '
+						<tr>
+						<td>'.$i.'</td>
+						<td>'.round($row['AVG(value)'],2).'%</td>
+						</tr>';
+		}
+
 
 	}
 	
